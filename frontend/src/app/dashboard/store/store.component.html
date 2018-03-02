@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<title></title>
+</head>
+<body class="p-3 mb-2 bg-light text-dark">
+	<div>
+		<h1 class="p-3 mb-2 bg-success text-white" align = 'center'>Products In Stock</h1>
+	</div>
+	
+	<div>
+	<table style="width:100%" class="table table-striped">
+  	<tr>
+    	<th>Name</th>
+    	<th>Price</th> 
+    	<th>Date Created</th>
+    	<th>Date Updated</th>
+    	<th></th>
+    	<th></th>
+  	</tr>
+  	<tr *ngFor = "let product of products">
+    	<td>{{product.name}}</td> 
+    	<td>{{product.price}}</td>
+    	<td>{{product.createdAt}}</td>
+    	<td>{{product.updatedAt}}</td>
+    	<td><button type="button" class="glyphicon glyphicon-trash" (click)="deleteProduct(product)"></button></td>
+    	
+    	<td><div *ngIf="updateProduct" class="container">
+		<form [formGroup]="formdata2" (ngSubmit) = "updateProduct(product)">
+
+			<div class="form-group">
+	  		Name<br><input type="text" class="form-control" style="width:20%" formControlName="name">
+	  		</div>
+
+	  		<div>
+	  		Price<br><input type="number" class="form-control" style="width:20%" formControlName="price">
+	  		</div>
+
+	  		<div>
+	  		Seller Name<br><input type="text" class="form-control" style="width:20%" formControlName="sellerName">
+	  		</div>
+
+	  		<input type="submit" value="Update Product">
+		</form>
+		</div></td>
+  	</tr>
+	</table>
+	</div>
+	
+	<div>
+		<button type="button" (click)="addProduct=!addProduct" class="glyphicon glyphicon-plus"></button>
+		<button type="button" class="glyphicon glyphicon-pencil" (click)="updateProduct=!updateProduct"></button>
+	</div>
+
+	<div *ngIf="addProduct" class="container">
+	<form [formGroup]="formdata1" (ngSubmit) = "createProduct()">
+
+		<div class="form-group">
+  		Name<br><input type="text" class="form-control" style="width:20%" formControlName="name">
+  		</div>
+
+  		<div>
+  		Price<br><input type="number" class="form-control" style="width:20%" formControlName="price">
+  		</div>
+
+  		<div>
+  		Seller Name<br><input type="text" class="form-control" style="width:20%" formControlName="sellerName">
+  		</div>
+
+  		<input type="submit" value="Add Product">
+	</form>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>>
+
